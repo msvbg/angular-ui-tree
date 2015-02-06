@@ -95,7 +95,7 @@
 
           };
 
-          scope.$watch(attrs.uiTree, function(newVal, oldVal){
+          var initCallbacks = function(newVal, oldVal){
             angular.forEach(newVal, function(value, key){
               if (callbacks[key]) {
                 if (typeof value === "function") {
@@ -105,8 +105,10 @@
             });
 
             scope.$callbacks = callbacks;
-          }, true);
+          };
 
+          scope.$watch(attrs.uiTree, initCallbacks, true);
+          scope.$watch(attrs.callbacks, initCallbacks, true); // support `data-callbacks`
 
         }
       };
