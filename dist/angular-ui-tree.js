@@ -258,6 +258,7 @@
           $scope.safeApply(function () {
             $scope.$modelValue.splice(index, 0, nodeData);
           });
+          $scope.$treeScope.$callbacks.dropped();
         };
 
         $scope.childNodes = function () {
